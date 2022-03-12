@@ -1,8 +1,26 @@
-const io = require("socket.io")(8900, {
-    cors: {
-      origin: "https://sigma-cental-hospital.netlify.app",
-    },
-});
+const http = require('http');
+const express = require('express');
+const cors = require("cors")
+
+const socketIO = require("socket.io");
+
+
+const app = express();
+const port = 5000 || process.env.PORT
+
+
+
+
+app.use(cors())
+
+const server = http.createServer(app);
+const io = socketIO(server);
+
+// const ios = {
+//     cors: {
+//       origin: "http://localhost:3000",
+//     },
+// };
   
 
 let users = []
@@ -42,3 +60,7 @@ io.on("connection", (socket) => {
         io.emit("getUsers", users)
     })
 })
+
+server.listen(port, () => {
+    console.log('listening on *:5000');
+  });
