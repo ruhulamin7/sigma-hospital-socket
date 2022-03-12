@@ -1,28 +1,16 @@
 const http = require('http');
 const express = require('express');
 const cors = require("cors")
-
 const socketIO = require("socket.io");
-
-
 const app = express();
-const port = 5000 || process.env.PORT
-
-
-
-
+const port = process.env.PORT || 5000
+// use cors
 app.use(cors())
-
+// use server
 const server = http.createServer(app);
 const io = socketIO(server);
 
-// const ios = {
-//     cors: {
-//       origin: "http://localhost:3000",
-//     },
-// };
-  
-
+// code socket io for find users
 let users = []
 const addUser = (userId, socketId, userInfo) => {
     console.log(userId);
@@ -60,7 +48,7 @@ io.on("connection", (socket) => {
         io.emit("getUsers", users)
     })
 })
-
+// server lisien
 server.listen(port, () => {
     console.log('listening on *:5000');
   });
