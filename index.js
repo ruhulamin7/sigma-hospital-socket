@@ -3,7 +3,7 @@ const express = require('express');
 const cors = require("cors")
 const socketIO = require("socket.io");
 const app = express();
-const port = process.env.PORT || 6000
+const port = process.env.PORT || 5000
 // use cors
 app.use(cors())
 // use server
@@ -48,11 +48,6 @@ io.on("connection", (socket) => {
         io.emit("getUsers", users)
     })
 })
-
-app.use("/", async (req, res) => {
-    res.send("okkk")
-})
-// oll
 // server lisien
 server.listen(port, () => {
     console.log('listening on *:5000');
