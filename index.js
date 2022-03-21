@@ -49,7 +49,9 @@ io.on("connection", (socket) => {
     })
 })
 
-
+app.use("/", async (req, res) => {
+    res.send("okkk")
+})
 // oll
 // server lisien
 server.listen(port, () => {
