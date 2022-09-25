@@ -28,7 +28,7 @@ const getUsers = (userId) => {
 io.on("connection", (socket) => {
     console.log("a user connected");
     // io.to(si).emit("welcome", "hello this is socket server")
-    // take userId and socket id 
+    // take the userId and socket id 
     socket.on("addUser", (userId,userInfo) => {
         addUser(userId, socket.id, userInfo)
         io.emit("getUsers", users)
